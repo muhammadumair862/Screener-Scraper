@@ -18,7 +18,8 @@ s = Service('chromedriver/chromedriver96.exe')
 base_path = os.path.dirname(os.path.abspath(__file__))
 # file_path = os.path.join(base_path,'Book1.xlsx')
 file_path = 'Book1.xlsx'
-
+USERNAME='your_username'
+PASSWORD='your_password'
 
 
 # Function to parse page using BeautifulSoup
@@ -28,7 +29,7 @@ def get_soup(response):
 
 # Function to login page using Selenium Webdriver
 def login(driver, url='https://www.screener.in/login/', 
-          username='vijata5689@vaband.com', password='qwerty@123'):
+          username='', password=''):
     # Navigate to the login page
     driver.get(url)
 
@@ -122,7 +123,7 @@ def long_running_function():
     driver = webdriver.Chrome(service=s, options=options)
 
     # Login to the website
-    login(driver)
+    login(driver, username=USERNAME, password=PASSWORD)
 
     for i,ticker in enumerate(company_df['Symbols'].to_list()):
         driver.get(f'https://www.screener.in/company/{ticker}/')
